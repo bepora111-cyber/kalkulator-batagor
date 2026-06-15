@@ -16,4 +16,4 @@ jobs:
       - name: Push to HF
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://bepora111-cyber:$HF_TOKEN@huggingface.co/spaces/USERNAME_HF_KAMU/NAMA_SPACE_KAMU main
+        run: git push --force https://bepora111-cyber:$HF_TOKEN@huggingface.co/spaces/Batagorsahabat/Kalkulator-Batagor main
