@@ -7,6 +7,6 @@ FROM alpine:latest
 WORKDIR /app
 COPY --from=builder /app/main .
 COPY --from=builder /app/templates ./templates
-EXPOSE 7860
-ENV PORT=7860
+EXPOSE 8080
+ENV PORT=8080
 CMD ["./main"]
