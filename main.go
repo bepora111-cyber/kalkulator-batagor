@@ -108,7 +108,7 @@ func main() {
 
 	// 2. Jika port kosong (artinya kamu sedang jalankan di localhost laptop), pakai default 8080
 	if port == "" {
-		port = "8080"
+		port = "7860"
 	}
 
 	// 3. Jalankan server menggunakan variabel port dinamis
