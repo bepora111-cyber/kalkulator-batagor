@@ -77,7 +77,7 @@ func main() {
 				<style>
     body {
         font-family: 'Segoe UI', sans-serif;
-        background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGcgEnEkqRLQEJw2JqwCC9mxfNSGLJWwkewXEjs3AqdHhFocIf_u5SUpEnAb2I0Wop8QaQmuHX5B_fglNXMRe6vMmUgxzrqEfA62aVvYloko9WIUfiUqF5h959tBarhrF7e_Q4ECoNxGyR=s1360-w1360-h1020-rw');
+        background-image: url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGcgEnEkqRLQEJw2JqwCC9mxfNSGLJWwkewXEjs3AqdHhFocIf_u5SUpEnAb2I0Wop8QaQmuHX5B_fglNXMRe6vMmUgxzrqEfA62aVvYloko9WIUfiUqF5h959tBarhrF7e_Q4ECoNxGyR=s1360-w1360-h1020-rw');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
