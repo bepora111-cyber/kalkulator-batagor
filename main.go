@@ -91,14 +91,6 @@ func main() {
         position: relative;
     }
 
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.35);
-        z-index: -1;
-    }
-
     .struk {
         background: rgba(255, 255, 255, 0.95);
         padding: 30px;
