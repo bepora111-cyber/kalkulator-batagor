@@ -152,14 +152,59 @@ func main() {
 					%s
 					<div class="garis"></div>
 					<div class="total">
-						<span>TOTAL :</span>
-						<span>Rp %s</span>
-					</div>
-					<a href="/" class="tombol-kembali">Kembali ke Kasir</a>
-				</div>
+    <span>TOTAL :</span>
+    <span id="totalHarga">Rp 0.000</span>
+</div>
+
+<a href="/" class="tombol-kembali">
+    Kembali ke Kasir
+</a>
+
+<script>
+const finalTotal = %d;
+const finalNumber = Math.floor(finalTotal / 1000);
+
+const totalEl = document.getElementById("totalHarga");
+
+let current = Math.floor(Math.random() * (finalNumber + 20));
+
+const interval = setInterval(() => {
+    current = Math.floor(Math.random() * (finalNumber + 20));
+    totalEl.textContent = "Rp " + current + ".000";
+}, 40);
+
+setTimeout(() => {
+    clearInterval(interval);
+
+    const start = current;
+    const duration = 600;
+    const startTime = performance.now();
+
+    function animate(time) {
+        const progress = Math.min(
+            (time - startTime) / duration,
+            1
+        );
+
+        const value = Math.floor(
+            start + (finalNumber - start) * progress
+        );
+
+        totalEl.textContent = "Rp " + value + ".000";
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        } else {
+            totalEl.textContent = "Rp " + finalNumber + ".000";
+        }
+    }
+
+    requestAnimationFrame(animate);
+}, 1200);
+</script>
 			</body>
 			</html>
-		`, formatRincian(dataHasil), formatRupiah(total))
+		`, formatRincian(dataHasil), total)
 	})
 
 	// --- PERUBAHAN UNTUK DEPLOY KE RENDER ---
