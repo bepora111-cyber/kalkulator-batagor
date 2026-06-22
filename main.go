@@ -75,14 +75,83 @@ func main() {
 			<head>
 				<title>Struk Pembayaran</title>
 				<style>
-					body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-					.struk { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 400px; width: 100%%; }
-					h3 { text-align: center; color: #b71c1c; margin-top: 0; }
-					.garis { border-top: 2px dashed #333; margin: 15px 0; }
-					.item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
-					.total { font-size: 18px; font-weight: bold; color: #1b5e20; display: flex; justify-content: space-between; margin-top: 15px; }
-					.tombol-kembali { display: block; text-align: center; background: #b71c1c; color: white; text-decoration: none; padding: 10px; margin-top: 20px; border-radius: 5px; font-weight: bold; }
-				</style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGcgEnEkqRLQEJw2JqwCC9mxfNSGLJWwkewXEjs3AqdHhFocIf_u5SUpEnAb2I0Wop8QaQmuHX5B_fglNXMRe6vMmUgxzrqEfA62aVvYloko9WIUfiUqF5h959tBarhrF7e_Q4ECoNxGyR=s1360-w1360-h1020-rw');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        position: relative;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: -1;
+    }
+
+    .struk {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        max-width: 400px;
+        width: 100%%;
+        backdrop-filter: blur(3px);
+    }
+
+    h3 {
+        text-align: center;
+        color: #b71c1c;
+        margin-top: 0;
+    }
+
+    .garis {
+        border-top: 2px dashed #333;
+        margin: 15px 0;
+    }
+
+    .item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .total {
+        font-size: 18px;
+        font-weight: bold;
+        color: #1b5e20;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+
+    .tombol-kembali {
+        display: block;
+        text-align: center;
+        background: #b71c1c;
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .tombol-kembali:hover {
+        background: #8e0000;
+    }
+</style>
 			</head>
 			<body>
 				<div class="struk">
