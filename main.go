@@ -91,7 +91,7 @@ func main() {
 					%s
 					<div class="garis"></div>
 					<div class="total">
-						<span>TOTAL:</span>
+						<span>TOTAL :</span>
 						<span>Rp %s</span>
 					</div>
 					<a href="/" class="tombol-kembali">Kembali ke Kasir</a>
