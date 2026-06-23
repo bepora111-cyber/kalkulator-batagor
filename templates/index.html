@@ -167,6 +167,24 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+        #live-cuaca{
+    height:22px;
+    overflow:hidden;
+    margin-bottom:10px;
+    text-align:center;
+    color:white;
+    font-size:14px;
+    position:relative;
+}
+
+#cuaca-slider{
+    transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+.cuaca-item{
+    height:22px;
+    line-height:22px;
+}
     </style>
 </head>
 <body>
@@ -174,8 +192,14 @@
 <div class="container">
     <h2>KALKULATOR BATAGOR SAHABAT</h2>
     <div id="jam-digital"></div>
-    <div id="live-cuaca" style="color: white; font-size: 14px; margin-bottom: 10px; text-align: center;">
-    ☁️ Memuat cuaca...
+    <div id="live-cuaca">
+    <div id="cuaca-slider">
+        <div class="cuaca-item">☁️ Memuat data...</div>
+        <div class="cuaca-item"></div>
+        <div class="cuaca-item"></div>
+        <div class="cuaca-item"></div>
+        <div class="cuaca-item"></div>
+    </div>
 </div>
     <form action="/hitung" method="POST">
         
@@ -268,36 +292,153 @@
     updateJam(); 
     setInterval(updateJam, 1000);
 
-    function ambilCuaca() {
-        // Koordinat Bandung
-        fetch('https://api.open-meteo.com/v1/forecast?latitude=-6.9175&longitude=107.6191&current_weather=true')
-            .then(response => response.json())
-            .then(data => {
-                const suhu = data.current_weather.temperature;
-                const code = data.current_weather.weathercode;
-                
-                let kondisi = "";
-                let emoji = "☁️";
+    let dataCuaca = [];
+let indexCuaca = 0;
 
-                // Logika pemetaan kode cuaca (WMO Code) ke kondisi dan emoji
-                if (code == 0) { kondisi = "Cerah"; emoji = "☀️"; }
-                else if (code >= 1 && code <= 3) { kondisi = "Berawan"; emoji = "⛅"; }
-                else if (code >= 45 && code <= 48) { kondisi = "Berkabut"; emoji = "🌫️"; }
-                else if (code >= 51 && code <= 55) { kondisi = "Gerimis"; emoji = "🌦️"; }
-                else if (code >= 61 && code <= 65) { kondisi = "Hujan"; emoji = "🌧️"; }
-                else if (code >= 71 && code <= 75) { kondisi = "Bersalju"; emoji = "❄️"; }
-                else if (code >= 80 && code <= 82) { kondisi = "Hujan Deras"; emoji = "⛈️"; }
-                else if (code >= 95) { kondisi = "Badai Petir"; emoji = "⚡"; }
-                else { kondisi = "Berawan"; emoji = "☁️"; }
+function ambilCuaca() {
+    fetch(
+'https://api.open-meteo.com/v1/forecast?latitude=-6.9175&longitude=107.6191&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,weather_code'
+)
+    .then(res => res.json())
+    .then(async data => {
 
-                document.getElementById('live-cuaca').innerHTML = `${emoji} Bandung: <b>${kondisi}, ${suhu}°C</b>`;
-            })
-            .catch(() => {
-                document.getElementById('live-cuaca').innerHTML = `☁️ Bandung: Berawan, 24°C`;
-            });
+        const suhu = data.current.temperature_2m;
+const kelembapan = data.current.relative_humidity_2m;
+const presipitasi = data.current.precipitation;
+const angin = data.current.wind_speed_10m;
+const code = data.current.weather_code;
+
+const dataAir = await fetch(
+    'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=-6.9175&longitude=107.6191&current=pm10,pm2_5'
+).then(r => r.json());
+
+const pm25 = dataAir.current.pm2_5;
+const pm10 = dataAir.current.pm10;
+
+       let kondisi = "Berawan";
+let emoji = "☁️";
+
+if (code === 0) {
+    kondisi = "Cerah";
+    emoji = "☀️";
+}
+else if (code >= 1 && code <= 3) {
+    kondisi = "Berawan";
+    emoji = "⛅";
+}
+else if (code >= 45 && code <= 48) {
+    kondisi = "Berkabut";
+    emoji = "🌫️";
+}
+else if (code >= 51 && code <= 55) {
+    kondisi = "Gerimis";
+    emoji = "🌦️";
+}
+else if (code >= 56 && code <= 57) {
+    kondisi = "Gerimis Beku";
+    emoji = "🌨️";
+}
+else if (code >= 61 && code <= 65) {
+    kondisi = "Hujan";
+    emoji = "🌧️";
+}
+else if (code >= 66 && code <= 67) {
+    kondisi = "Hujan Beku";
+    emoji = "🌨️";
+}
+else if (code >= 71 && code <= 77) {
+    kondisi = "Bersalju";
+    emoji = "❄️";
+}
+else if (code >= 80 && code <= 82) {
+    kondisi = "Hujan Deras";
+    emoji = "⛈️";
+}
+else if (code >= 85 && code <= 86) {
+    kondisi = "Badai Salju";
+    emoji = "🌨️";
+}
+else if (code === 95) {
+    kondisi = "Badai Petir";
+    emoji = "⚡";
+}
+else if (code === 96 || code === 99) {
+    kondisi = "Badai Petir Disertai Hujan Es";
+    emoji = "⛈️⚡";
+}
+       let kualitas = "";
+let emojiUdara = "";
+
+if (pm25 == null) {
+    kualitas = "Data Tidak Tersedia";
+    emojiUdara = "⚪";
+}
+else if (pm25 <= 12) {
+    kualitas = "Baik";
+    emojiUdara = "🟢";
+}
+else if (pm25 <= 35.4) {
+    kualitas = "Sedang";
+    emojiUdara = "🟡";
+}
+else if (pm25 <= 55.4) {
+    kualitas = "Tidak Sehat";
+    emojiUdara = "🟠";
+}
+else if (pm25 <= 150.4) {
+    kualitas = "Sangat Tidak Sehat";
+    emojiUdara = "🔴";
+}
+else {
+    kualitas = "Berbahaya";
+    emojiUdara = "⚫";
+}
+
+        dataCuaca = [
+            `${emoji} Bandung: <b>${kondisi}, ${suhu}°C</b>`,
+            `💧 Kelembapan Udara: <b>${kelembapan}%</b>`,
+            `🌧️ Presipitasi: <b>${presipitasi} mm</b>`,
+            `💨 Kecepatan Angin: <b>${angin} km/j</b>`,
+            `${emojiUdara} Kualitas Udara: <b>${kualitas}</b>${pm25 != null ? ` (${pm25} µg/m³)` : ''}`
+        ];
+
+        const item = document.querySelectorAll('.cuaca-item');
+
+        dataCuaca.forEach((teks, i) => {
+            item[i].innerHTML = teks;
+        });
+    })
+    .catch(() => {
+        dataCuaca = [
+            '☁️ Bandung: Berawan',
+            '💧 Kelembapan Bandung',
+            '🌧️ Presipitasi Bandung',
+            '💨 Kecepatan Angin Bandung',
+            '🌿 Kualitas Udara Bandung'
+        ];
+
+        const item = document.querySelectorAll('.cuaca-item');
+
+        dataCuaca.forEach((teks, i) => {
+            item[i].innerHTML = teks;
+        });
+    });
+}
+function putarCuaca() {
+    const slider = document.getElementById('cuaca-slider');
+
+    indexCuaca++;
+
+    if (indexCuaca >= 5) {
+        indexCuaca = 0;
     }
-    ambilCuaca();
-    setInterval(ambilCuaca, 3000); // Update setiap 30 detik
+
+    slider.style.transform =
+        `translateY(-${indexCuaca * 22}px)`;
+}
+ambilCuaca();
+setInterval(ambilCuaca, 60000); // refresh API tiap 1 menit
+setInterval(putarCuaca, 5000);  // ganti tampilan tiap 5 detik
 
     // 3. KODE INTERAKTIF GRADASI MULUS PER ANGKA (MENGGUNAKAN HSL)
     const semuaInput = document.querySelectorAll('.menu-input');
