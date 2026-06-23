@@ -167,23 +167,26 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        #live-cuaca{
-    height:22px;
-    overflow:hidden;
-    margin-bottom:10px;
-    text-align:center;
-    color:white;
-    font-size:14px;
-    position:relative;
+       #live-cuaca{
+    height: 22px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    position: relative;
 }
 
 #cuaca-slider{
-    transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
 }
 
 .cuaca-item{
-    height:22px;
-    line-height:22px;
+    height: 22px;
+    line-height: 22px;
+    white-space: nowrap;      /* jangan pindah ke baris baru */
+    font-size: clamp(11px, 3vw, 14px); /* mengecil di HP */
+    padding: 0 5px;
 }
     </style>
 </head>
@@ -297,104 +300,89 @@ let indexCuaca = 0;
 
 function ambilCuaca() {
     fetch(
-'https://api.open-meteo.com/v1/forecast?latitude=-6.9175&longitude=107.6191&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,weather_code'
-)
+        'https://api.open-meteo.com/v1/forecast?latitude=-6.9175&longitude=107.6191&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,weather_code'
+    )
     .then(res => res.json())
     .then(async data => {
 
         const suhu = data.current.temperature_2m;
-const kelembapan = data.current.relative_humidity_2m;
-const presipitasi = data.current.precipitation;
-const angin = data.current.wind_speed_10m;
-const code = data.current.weather_code;
+        const kelembapan = data.current.relative_humidity_2m;
+        const presipitasi = data.current.precipitation;
+        const angin = data.current.wind_speed_10m;
+        const code = data.current.weather_code;
 
-const dataAir = await fetch(
-    'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=-6.9175&longitude=107.6191&current=pm10,pm2_5'
-).then(r => r.json());
+        const dataAir = await fetch(
+            'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=-6.9175&longitude=107.6191&current=pm10,pm2_5'
+        ).then(r => r.json());
 
-const pm25 = dataAir.current.pm2_5;
-const pm10 = dataAir.current.pm10;
+        const pm25 = dataAir.current.pm2_5;
+        const pm10 = dataAir.current.pm10;
 
-       let kondisi = "Berawan";
-let emoji = "☁️";
+        let kondisi = "Berawan";
+        let emoji = "☁️";
 
-if (code === 0) {
-    kondisi = "Cerah";
-    emoji = "☀️";
-}
-else if (code >= 1 && code <= 3) {
-    kondisi = "Berawan";
-    emoji = "⛅";
-}
-else if (code >= 45 && code <= 48) {
-    kondisi = "Berkabut";
-    emoji = "🌫️";
-}
-else if (code >= 51 && code <= 55) {
-    kondisi = "Gerimis";
-    emoji = "🌦️";
-}
-else if (code >= 56 && code <= 57) {
-    kondisi = "Gerimis Beku";
-    emoji = "🌨️";
-}
-else if (code >= 61 && code <= 65) {
-    kondisi = "Hujan";
-    emoji = "🌧️";
-}
-else if (code >= 66 && code <= 67) {
-    kondisi = "Hujan Beku";
-    emoji = "🌨️";
-}
-else if (code >= 71 && code <= 77) {
-    kondisi = "Bersalju";
-    emoji = "❄️";
-}
-else if (code >= 80 && code <= 82) {
-    kondisi = "Hujan Deras";
-    emoji = "⛈️";
-}
-else if (code >= 85 && code <= 86) {
-    kondisi = "Badai Salju";
-    emoji = "🌨️";
-}
-else if (code === 95) {
-    kondisi = "Badai Petir";
-    emoji = "⚡";
-}
-else if (code === 96 || code === 99) {
-    kondisi = "Badai Petir Disertai Hujan Es";
-    emoji = "⛈️⚡";
-}
-       let kualitas = "";
-let emojiUdara = "";
+        if (code === 0) {
+            kondisi = "Cerah";
+            emoji = "☀️";
+        } else if (code >= 1 && code <= 3) {
+            kondisi = "Berawan";
+            emoji = "⛅";
+        } else if (code >= 45 && code <= 48) {
+            kondisi = "Berkabut";
+            emoji = "🌫️";
+        } else if (code >= 51 && code <= 55) {
+            kondisi = "Gerimis";
+            emoji = "🌦️";
+        } else if (code >= 56 && code <= 57) {
+            kondisi = "Gerimis Beku";
+            emoji = "🌨️";
+        } else if (code >= 61 && code <= 65) {
+            kondisi = "Hujan";
+            emoji = "🌧️";
+        } else if (code >= 66 && code <= 67) {
+            kondisi = "Hujan Beku";
+            emoji = "🌨️";
+        } else if (code >= 71 && code <= 77) {
+            kondisi = "Bersalju";
+            emoji = "❄️";
+        } else if (code >= 80 && code <= 82) {
+            kondisi = "Hujan Deras";
+            emoji = "⛈️";
+        } else if (code >= 85 && code <= 86) {
+            kondisi = "Badai Salju";
+            emoji = "🌨️";
+        } else if (code === 95) {
+            kondisi = "Badai Petir";
+            emoji = "⚡";
+        } else if (code === 96 || code === 99) {
+            kondisi = "Badai Petir Disertai Hujan Es";
+            emoji = "⛈️⚡";
+        }
 
-if (pm25 == null) {
-    kualitas = "Data Tidak Tersedia";
-    emojiUdara = "⚪";
-}
-else if (pm25 <= 12) {
-    kualitas = "Baik";
-    emojiUdara = "🟢";
-}
-else if (pm25 <= 35.4) {
-    kualitas = "Sedang";
-    emojiUdara = "🟡";
-}
-else if (pm25 <= 55.4) {
-    kualitas = "Tidak Sehat";
-    emojiUdara = "🟠";
-}
-else if (pm25 <= 150.4) {
-    kualitas = "Sangat Tidak Sehat";
-    emojiUdara = "🔴";
-}
-else {
-    kualitas = "Berbahaya";
-    emojiUdara = "⚫";
-}
+        let kualitas = "";
+        let emojiUdara = "";
 
-        dataCuaca = [
+        if (pm25 == null) {
+            kualitas = "Data Tidak Tersedia";
+            emojiUdara = "⚪";
+        } else if (pm25 <= 12) {
+            kualitas = "Baik";
+            emojiUdara = "🟢";
+        } else if (pm25 <= 35.4) {
+            kualitas = "Sedang";
+            emojiUdara = "🟡";
+        } else if (pm25 <= 55.4) {
+            kualitas = "Tidak Sehat";
+            emojiUdara = "🟠";
+        } else if (pm25 <= 150.4) {
+            kualitas = "Sangat Tidak Sehat";
+            emojiUdara = "🔴";
+        } else {
+            kualitas = "Berbahaya";
+            emojiUdara = "⚫";
+        }
+
+        const dataCuaca = [
             `${emoji} Bandung: <b>${kondisi}, ${suhu}°C</b>`,
             `💧 Kelembapan Udara: <b>${kelembapan}%</b>`,
             `🌧️ Presipitasi: <b>${presipitasi} mm</b>`,
@@ -402,14 +390,10 @@ else {
             `${emojiUdara} Kualitas Udara: <b>${kualitas}</b>${pm25 != null ? ` (${pm25} µg/m³)` : ''}`
         ];
 
-        const item = document.querySelectorAll('.cuaca-item');
-
-        dataCuaca.forEach((teks, i) => {
-            item[i].innerHTML = teks;
-        });
+        tampilkanCuaca(dataCuaca);
     })
     .catch(() => {
-        dataCuaca = [
+        const dataCuaca = [
             '☁️ Bandung: Berawan',
             '💧 Kelembapan Bandung',
             '🌧️ Presipitasi Bandung',
@@ -417,13 +401,20 @@ else {
             '🌿 Kualitas Udara Bandung'
         ];
 
-        const item = document.querySelectorAll('.cuaca-item');
-
-        dataCuaca.forEach((teks, i) => {
-            item[i].innerHTML = teks;
-        });
+        tampilkanCuaca(dataCuaca);
     });
 }
+
+function tampilkanCuaca(dataCuaca) {
+    const item = document.querySelectorAll('.cuaca-item');
+
+    dataCuaca.forEach((teks, i) => {
+        if (item[i]) {
+            item[i].innerHTML = teks;
+        }
+    });
+}
+
 function putarCuaca() {
     const slider = document.getElementById('cuaca-slider');
 
