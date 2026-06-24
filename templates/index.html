@@ -322,11 +322,17 @@ function ambilCuaca() {
         let emoji = "☁️";
 
         if (code === 0) {
-            kondisi = "Cerah";
-            emoji = "☀️";
-        } else if (code >= 1 && code <= 3) {
-            kondisi = "Berawan";
-            emoji = "⛅";
+    kondisi = "Cerah";
+    emoji = "☀️";
+} else if (code === 1) {
+    kondisi = "Sebagian Cerah";
+    emoji = "🌤️";
+} else if (code === 2) {
+    kondisi = "Berawan";
+    emoji = "⛅";
+} else if (code === 3) {
+    kondisi = "Mendung";
+    emoji = "☁️";
         } else if (code >= 45 && code <= 48) {
             kondisi = "Berkabut";
             emoji = "🌫️";
