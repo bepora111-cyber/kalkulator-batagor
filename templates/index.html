@@ -473,13 +473,13 @@ function ambilCuaca() {
             emojiUdara = "⚫";
         }
 
-        const dataCuaca = [
-            `${emoji} Bandung: <b>${kondisi}, ${suhu}°C</b>`,
-            `💧 Kelembapan Udara: <b>${kelembapan}%</b>`,
-            `🌧️ Presipitasi: <b>${Number(presipitasi).toFixed(2)} mm</b>`,
-            `💨 Kecepatan Angin: <b>${angin} km/j</b>`,
-            `${emojiUdara} Kualitas Udara: <b>${kualitas}</b>${pm25 != null ? ` (${Number(pm25).toFixed(2)} µg/m³)` : ''}`
-        ];
+       const dataCuaca = [
+    `${emoji} Bandung: <b>${kondisi}, ${suhu}°C</b>`,
+    `💧 Kelembapan Udara: <b>${kelembapan}%</b>`,
+    `🌧️ Presipitasi: <b>${Number(presipitasi).toFixed(2)} mm</b>`,
+    `💨 Kecepatan Angin: <b>${angin} km/j</b>`,
+    `${emojiUdara} PM2.5: <b>${pm25 != null ? Number(pm25).toFixed(2) : '-'} µg/m³</b>`
+];
 
         tampilkanCuaca(dataCuaca);
     })
@@ -489,7 +489,7 @@ function ambilCuaca() {
             '💧 Kelembapan Bandung',
             '🌧️ Presipitasi Bandung',
             '💨 Kecepatan Angin Bandung',
-            '🌿 Kualitas Udara Bandung'
+            '🌿 PM2.5'
         ];
 
         tampilkanCuaca(dataCuaca);
