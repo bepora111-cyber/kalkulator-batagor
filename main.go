@@ -75,31 +75,61 @@ func main() {
 			<head>
 				<title>Struk Pembayaran</title>
 				<style>
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        background-image: url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGcgEnEkqRLQEJw2JqwCC9mxfNSGLJWwkewXEjs3AqdHhFocIf_u5SUpEnAb2I0Wop8QaQmuHX5B_fglNXMRe6vMmUgxzrqEfA62aVvYloko9WIUfiUqF5h959tBarhrF7e_Q4ECoNxGyR=s1360-w1360-h1020-rw');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+   body {
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGcgEnEkqRLQEJw2JqwCC9mxfNSGLJWwkewXEjs3AqdHhFocIf_u5SUpEnAb2I0Wop8QaQmuHX5B_fglNXMRe6vMmUgxzrqEfA62aVvYloko9WIUfiUqF5h959tBarhrF7e_Q4ECoNxGyR=s1360-w1360-h1020-rw');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        position: relative;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
 
-    .struk {
-        background: rgba(255, 255, 255, 0.95);
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-        max-width: 400px;
-        width: 100%%;
-        backdrop-filter: blur(3px);
-    }
+    transition: all 0.8s ease;
+}
+
+.struk {
+    background: rgba(255,255,255,0.95);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 100%%;
+    backdrop-filter: blur(3px);
+    transition: all 0.8s ease;
+}
+	body.dark-mode {
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.7),
+            rgba(0,0,0,0.7)
+        ),
+        url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGcgEnEkqRLQEJw2JqwCC9mxfNSGLJWwkewXEjs3AqdHhFocIf_u5SUpEnAb2I0Wop8QaQmuHX5B_fglNXMRe6vMmUgxzrqEfA62aVvYloko9WIUfiUqF5h959tBarhrF7e_Q4ECoNxGyR=s1360-w1360-h1020-rw');
+}
+
+body.dark-mode .struk {
+    background: rgba(20,20,20,0.85);
+    color: white;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.8);
+}
+
+body.dark-mode h3 {
+    color: #ff6b6b;
+}
+
+body.dark-mode .item,
+body.dark-mode .total {
+    color: white;
+}
+
+body.dark-mode .garis {
+    border-top: 2px dashed #aaa;
+}
 
     h3 {
         text-align: center;
@@ -157,6 +187,20 @@ func main() {
 					</div>
 					<a href="/" class="tombol-kembali">Kembali ke Kasir</a>
 				</div>
+				<script>
+function cekDarkMode() {
+    const jam = new Date().getHours();
+
+    if (jam >= 18 || jam < 6) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+}
+
+cekDarkMode();
+setInterval(cekDarkMode, 60000);
+</script>
 			</body>
 			</html>
 		`, formatRincian(dataHasil), formatRupiah(total))

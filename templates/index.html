@@ -249,6 +249,42 @@
     font-size: clamp(11px, 3vw, 14px); /* mengecil di HP */
     padding: 0 5px;
 }
+/* Efek transisi supaya pergantian siang-malam halus */
+body,
+.container,
+.menu-item,
+#jam-digital {
+    transition: all 0.8s ease;
+}
+
+/* DARK MODE OTOMATIS */
+body.dark-mode {
+    background-image:
+        linear-gradient(rgba(0,0,0,0.65),
+                        rgba(0,0,0,0.65)),
+        url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGcgEnEkqRLQEJw2JqwCC9mxfNSGLJWwkewXEjs3AqdHhFocIf_u5SUpEnAb2I0Wop8QaQmuHX5B_fglNXMRe6vMmUgxzrqEfA62aVvYloko9WIUfiUqF5h959tBarhrF7e_Q4ECoNxGyR=s1360-w1360-h1020-rw');
+}
+
+body.dark-mode .container {
+    background: rgba(20,20,20,0.75);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 25px rgba(0,0,0,0.7);
+}
+
+body.dark-mode .menu-item {
+    background: rgba(255,255,255,0.08);
+}
+
+body.dark-mode .menu-price,
+body.dark-mode .menu-name,
+body.dark-mode h2 {
+    color: #ffffff;
+}
+
+body.dark-mode #jam-digital {
+    background: #111;
+    color: #fff;
+}
     </style>
 </head>
 <body>
@@ -376,6 +412,7 @@
         // Susunan teks: Ucapan di kiri, waktu di tengah, gambar di sebelah kanan jam
         const teksWaktu = `<span>${ucapan}, ${hari} | ${jam}:${menit}:${detik} WIB</span> <span class="ikon-waktu">${ikon}</span>`;
         document.getElementById("jam-digital").innerHTML = teksWaktu;
+cekDarkMode();
     }
     updateJam(); 
     setInterval(updateJam, 1000);
@@ -543,7 +580,15 @@ setInterval(putarCuaca, 5000);  // ganti tampilan tiap 5 detik
             }
         });
     });
-</script>
-       
+    function cekDarkMode() {
+    const jam = new Date().getHours();
+
+    if (jam >= 18 || jam < 6) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+}
+</script>       
 </body>
-</html>
+</html> 
