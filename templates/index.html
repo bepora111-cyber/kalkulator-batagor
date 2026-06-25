@@ -285,6 +285,14 @@ body.dark-mode #jam-digital {
     background: #111;
     color: #fff;
 }
+#reset-pesanan{
+    background:#555;
+    margin-top:10px;
+}
+
+#reset-pesanan:hover{
+    background:#333;
+}
     </style>
 </head>
 <body>
@@ -373,8 +381,12 @@ body.dark-mode #jam-digital {
         </div>
 
         <div class="checkout-section">
-            <button type="submit">Hitung Total Belanja</button>
-        </div>
+    <button type="submit">Hitung Total Belanja</button>
+
+    <button type="button" id="reset-pesanan">
+        Reset Pesanan
+    </button>
+</div>
            
     </form>
 </div>
@@ -580,6 +592,26 @@ setInterval(putarCuaca, 5000);  // ganti tampilan tiap 5 detik
             }
         });
     });
+    // Simpan jumlah ke localStorage
+document.querySelectorAll('.menu-input').forEach(input => {
+    input.addEventListener('input', function () {
+        localStorage.setItem(this.name, this.value);
+    });
+});
+
+// Kembalikan nilai saat halaman dibuka lagi
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.menu-input').forEach(input => {
+        const nilai = localStorage.getItem(input.name);
+
+        if (nilai !== null) {
+            input.value = nilai;
+
+            // Jalankan kembali efek warna hijau
+            input.dispatchEvent(new Event('input'));
+        }
+    });
+});
     function cekDarkMode() {
     const jam = new Date().getHours();
 
@@ -589,6 +621,14 @@ setInterval(putarCuaca, 5000);  // ganti tampilan tiap 5 detik
         document.body.classList.remove('dark-mode');
     }
 }
+document.getElementById('reset-pesanan').addEventListener('click', () => {
+    localStorage.clear();
+
+    document.querySelectorAll('.menu-input').forEach(input => {
+        input.value = 0;
+        input.dispatchEvent(new Event('input'));
+    });
+});
 </script>       
 </body>
 </html> 
