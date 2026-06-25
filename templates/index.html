@@ -391,9 +391,9 @@ function ambilCuaca() {
         const dataCuaca = [
             `${emoji} Bandung: <b>${kondisi}, ${suhu}°C</b>`,
             `💧 Kelembapan Udara: <b>${kelembapan}%</b>`,
-            `🌧️ Presipitasi: <b>${presipitasi} mm</b>`,
+            `🌧️ Presipitasi: <b>${Number(presipitasi).toFixed(2)} mm</b>`,
             `💨 Kecepatan Angin: <b>${angin} km/j</b>`,
-            `${emojiUdara} Kualitas Udara: <b>${kualitas}</b>${pm25 != null ? ` (${pm25} µg/m³)` : ''}`
+            `${emojiUdara} Kualitas Udara: <b>${kualitas}</b>${pm25 != null ? ` (${Number(pm25).toFixed(2)} µg/m³)` : ''}`
         ];
 
         tampilkanCuaca(dataCuaca);
