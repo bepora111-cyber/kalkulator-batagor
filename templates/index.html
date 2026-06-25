@@ -5,29 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator Batagor Sahabat</title>
     <style>
-        /* JAM DIGITAL: LATAR BELAKANG MERAH MARUN SOLID */
         #jam-digital {
-            text-align: center;
-            font-size: 16px;
-            font-weight: bold;
-            background-color: #b71c1c; 
-            color: #ffffff; 
-            padding: 8px 15px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px; /* Jarak antara teks jam dan emoji gambar */
-        }
+    text-align: center;
+    font-size: clamp(12px, 3vw, 16px);
+    font-weight: bold;
+    background-color: #b71c1c;
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 
-        /* Ukuran emoji agar proporsional dan pas dilihat */
-        .ikon-waktu {
-            font-size: 20px;
-            vertical-align: middle;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    white-space: nowrap;   /* tetap satu baris */
+    overflow: hidden;      /* tidak turun ke bawah */
+}
+.ikon-waktu{
+    font-size: clamp(14px, 3vw, 20px);
+    flex-shrink: 0;
+}
+@media (max-width:480px){
+    #jam-digital{
+        font-size:11px;
+        padding:8px 10px;
+        letter-spacing:0;
+        gap:4px;
+    }
+}
 
         /* BACKGROUND ASLI PILIHAN ANDA */
         body {
@@ -180,7 +189,42 @@
     font-size: 14px;
     position: relative;
 }
+#live-cuaca-wrapper{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+}
 
+.iklan-kiri,
+.iklan-kanan{
+    display:flex;
+    gap:5px;
+}
+
+.iklan-kiri img,
+.iklan-kanan img{
+    width:30px;
+    height:30px;
+    border-radius:6px;
+    object-fit:contain; /* ganti cover menjadi contain */
+    background:white;   /* opsional supaya ada latar */
+    padding:2px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.iklan-kiri img:hover,
+.iklan-kanan img:hover{
+    transform:scale(1.1);
+}
+@media (max-width:600px){
+    .iklan-kiri img,
+    .iklan-kanan img{
+        width:24px;
+        height:24px;
+    }
+}
 #cuaca-slider{
     transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
 }
@@ -199,14 +243,38 @@
 <div class="container">
     <h2>KALKULATOR BATAGOR SAHABAT</h2>
     <div id="jam-digital"></div>
-    <div id="live-cuaca">
-    <div id="cuaca-slider">
-        <div class="cuaca-item">☁️ Memuat data...</div>
-        <div class="cuaca-item"></div>
-        <div class="cuaca-item"></div>
-        <div class="cuaca-item"></div>
-        <div class="cuaca-item"></div>
+    <div id="live-cuaca-wrapper">
+
+    <div class="iklan-kiri">
+        <a href="https://gofood.link/a/xnTgJA1" target="_blank">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe_tN8jEnbI7DnIMm2_zCQKOdvDtFm5TrVzQ&s">
+        </a>
+
+        <a href="https://food.grab.com/id/id/restaurant/batagor-sahabat-jamika-delivery/6-C26YLGAKFGCALA?sourceID=20260528_182926_a66383272f4040d0ad2e61b0cd8e66e9_MEXMPS" target="_blank">
+            <img src="https://i.pinimg.com/736x/d2/50/a3/d250a3cf5813b7d3f65caf9d640942db.jpg">
+        </a>
     </div>
+
+    <div id="live-cuaca">
+        <div id="cuaca-slider">
+            <div class="cuaca-item">☁️ Memuat data...</div>
+            <div class="cuaca-item"></div>
+            <div class="cuaca-item"></div>
+            <div class="cuaca-item"></div>
+            <div class="cuaca-item"></div>
+        </div>
+    </div>
+
+    <div class="iklan-kanan">
+        <a href="https://shopee.co.id/universal-link/now-food/shop/20184018?deep_and_deferred=1&shareChannel=copy_link" target="_blank">
+            <img src="https://img.icons8.com/color/1200/shopeefood.jpg">
+        </a>
+
+        <a href="https://wa.me/6285220210767" target="_blank">
+            <img src="https://play-lh.googleusercontent.com/Gqxk4T0uZsDwFp07DE-508hkyvcNmgFuRwPiwTEfF7D7OzGv1FdHDzEyMxNsSBZLOJlGpe3ULvVM2RgrRAlBqA=w480-h960-rw">
+        </a>
+    </div>
+
 </div>
     <form action="/hitung" method="POST">
         
