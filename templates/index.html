@@ -180,26 +180,39 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-       #live-cuaca{
-    height: 22px;
-    overflow: hidden;
-    margin-bottom: 10px;
-    text-align: center;
-    color: white;
-    font-size: 14px;
-    position: relative;
-}
-#live-cuaca-wrapper{
+      #live-cuaca-wrapper{
     display:flex;
     align-items:center;
-    justify-content:center;
-    gap:10px;
+    gap:5px;
+}
+
+#live-cuaca{
+    flex:1;
+    min-width:0;
+    height:22px;
+    overflow:hidden;
+    text-align:center;
+    color:white;
+    font-size:14px;
+    position:relative;
 }
 
 .iklan-kiri,
 .iklan-kanan{
     display:flex;
     gap:5px;
+    flex-shrink:0;
+}
+@media (max-width:600px){
+    .iklan-kiri img,
+    .iklan-kanan img{
+        width:20px;
+        height:20px;
+    }
+
+    .cuaca-item{
+        font-size:10px;
+    }
 }
 
 .iklan-kiri img,
