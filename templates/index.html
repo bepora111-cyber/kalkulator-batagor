@@ -379,13 +379,20 @@ body.dark-mode #jam-digital {
             </div>
             <input type="number" name="menu5" class="menu-input" min="0" value="0">
         </div>
+<div class="checkout-section">
 
-        <div class="checkout-section">
-    <button type="submit">Hitung Total Belanja</button>
+    <div id="animasi-total">
+        Rp 0
+    </div>
+
+    <button type="submit" id="btn-hitung">
+        Hitung Total Belanja
+    </button>
 
     <button type="button" id="reset-pesanan">
         Reset Pesanan
     </button>
+
 </div>
            
     </form>
@@ -628,6 +635,28 @@ document.getElementById('reset-pesanan').addEventListener('click', () => {
         input.value = 0;
         input.dispatchEvent(new Event('input'));
     });
+});
+document.getElementById('btn-hitung').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const form = this.closest('form');
+    const animasi = document.getElementById('animasi-total');
+
+    animasi.style.display = 'block';
+
+    let angka = 0;
+
+    const interval = setInterval(() => {
+        angka += Math.floor(Math.random() * 30000);
+
+        animasi.innerHTML =
+            "Rp " + angka.toLocaleString('id-ID');
+    }, 50);
+
+    setTimeout(() => {
+        clearInterval(interval);
+        form.submit();
+    }, 1250);
 });
 </script>       
 </body>
