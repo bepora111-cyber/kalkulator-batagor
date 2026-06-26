@@ -205,7 +205,7 @@ const totalAsli = %d;
 const totalEl = document.getElementById("total-animasi");
 
 let angka = 0;
-const durasi = 1250;      // 1,25 detik
+const durasi = 1000;      // 1 detik
 const intervalMs = 50;
 const jumlahLangkah = durasi / intervalMs;
 const kenaikan = totalAsli / jumlahLangkah;
