@@ -381,9 +381,7 @@ body.dark-mode #jam-digital {
         </div>
 
         <div class="checkout-section">
-    <button type="submit" id="btn-hitung">
-    Hitung Total Belanja
-</button>
+    <button type="submit">Hitung Total Belanja</button>
 
     <button type="button" id="reset-pesanan">
         Reset Pesanan
@@ -631,30 +629,6 @@ document.getElementById('reset-pesanan').addEventListener('click', () => {
         input.dispatchEvent(new Event('input'));
     });
 });
-document.getElementById('btn-hitung').addEventListener('click', function(e){
-    e.preventDefault();
-
-    const audio = document.getElementById('suara-struk');
-    audio.currentTime = 0;
-    audio.play();
-
-    setTimeout(() => {
-        this.closest('form').submit();
-    }, 1500);
-});
-window.addEventListener('pageshow', () => {
-    if (localStorage.getItem('stopKasirSound')) {
-        const audio = document.getElementById('suara-struk');
-
-        audio.pause();
-        audio.currentTime = 0;
-
-        localStorage.removeItem('stopKasirSound');
-    }
-});
 </script>       
-<audio id="suara-struk" preload="auto">
-    <source src="https://www.soundjay.com/mechanical/sounds/printer-1.mp3" type="audio/mpeg">
-</audio>
 </body>
 </html> 

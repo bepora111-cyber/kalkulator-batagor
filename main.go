@@ -185,10 +185,7 @@ body.dark-mode .garis {
 						<span>TOTAL :</span>
 						<span>Rp %s</span>
 					</div>
-					<a href="/" class="tombol-kembali"
-   onclick="localStorage.setItem('stopKasirSound','1')">
-   Kembali ke Kasir
-</a>
+					<a href="/" class="tombol-kembali">Kembali ke Kasir</a>
 				</div>
 				<script>
 function cekDarkMode() {
