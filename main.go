@@ -249,19 +249,39 @@ const interval = setInterval(() => {
 func formatRincian(d HasilBelanja) string {
 	rincian := ""
 	if d.Menu1Qty > 0 {
-		rincian += fmt.Sprintf("<div class='item'><span>Batagor Premium x%d</span><span>Rp %d</span></div>", d.Menu1Qty, d.Menu1Qty*10000)
+		rincian += fmt.Sprintf(
+			"<div class='item'><span>Batagor Premium x%d</span><span>Rp %s</span></div>",
+			d.Menu1Qty,
+			formatRupiah(d.Menu1Qty*10000),
+		)
 	}
 	if d.Menu2Qty > 0 {
-		rincian += fmt.Sprintf("<div class='item'><span>Siomay Premium x%d</span><span>Rp %d</span></div>", d.Menu2Qty, d.Menu2Qty*10000)
+		rincian += fmt.Sprintf(
+			"<div class='item'><span>Siomay Premium x%d</span><span>Rp %s</span></div>",
+			d.Menu2Qty,
+			formatRupiah(d.Menu2Qty*10000),
+		)
 	}
 	if d.Menu3Qty > 0 {
-		rincian += fmt.Sprintf("<div class='item'><span>Baso Goreng x%d</span><span>Rp %d</span></div>", d.Menu3Qty, d.Menu3Qty*6000)
+		rincian += fmt.Sprintf(
+			"<div class='item'><span>Baso Goreng x%d</span><span>Rp %s</span></div>",
+			d.Menu3Qty,
+			formatRupiah(d.Menu3Qty*6000),
+		)
 	}
 	if d.Menu4Qty > 0 {
-		rincian += fmt.Sprintf("<div class='item'><span>Batagor Medium x%d</span><span>Rp %d</span></div>", d.Menu4Qty, d.Menu4Qty*6000)
+		rincian += fmt.Sprintf(
+			"<div class='item'><span>Batagor Medium x%d</span><span>Rp %s</span></div>",
+			d.Menu4Qty,
+			formatRupiah(d.Menu4Qty*6000),
+		)
 	}
 	if d.Menu5Qty > 0 {
-		rincian += fmt.Sprintf("<div class='item'><span>Siomay Medium x%d</span><span>Rp %d</span></div>", d.Menu5Qty, d.Menu5Qty*6000)
+		rincian += fmt.Sprintf(
+			"<div class='item'><span>Siomay Medium x%d</span><span>Rp %s</span></div>",
+			d.Menu5Qty,
+			formatRupiah(d.Menu5Qty*6000),
+		)
 	}
 
 	if rincian == "" {
