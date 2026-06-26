@@ -182,9 +182,9 @@ body.dark-mode .garis {
 					%s
 					<div class="garis"></div>
 					<div class="total">
-						<span>TOTAL :</span>
-						<span>Rp %s</span>
-					</div>
+                    <span>TOTAL :</span>
+                    <span id="total-animasi">Rp 0</span>
+                    </div>
 					<a href="/" class="tombol-kembali">Kembali ke Kasir</a>
 				</div>
 				<script>
@@ -200,10 +200,27 @@ function cekDarkMode() {
 
 cekDarkMode();
 setInterval(cekDarkMode, 60000);
+
+const totalAsli = %d;
+const totalEl = document.getElementById("total-animasi");
+
+const interval = setInterval(() => {
+    const random = Math.floor(Math.random() * (totalAsli + 1));
+
+    totalEl.innerHTML =
+        "Rp " + random.toLocaleString('id-ID');
+}, 50);
+
+setTimeout(() => {
+    clearInterval(interval);
+
+    totalEl.innerHTML =
+        "Rp " + totalAsli.toLocaleString('id-ID');
+}, 1250);
 </script>
 			</body>
 			</html>
-		`, formatRincian(dataHasil), formatRupiah(total))
+		`, formatRincian(dataHasil), total)
 	})
 
 	// --- PERUBAHAN UNTUK DEPLOY KE RENDER ---
