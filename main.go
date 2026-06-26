@@ -204,19 +204,23 @@ setInterval(cekDarkMode, 60000);
 const totalAsli = %d;
 const totalEl = document.getElementById("total-animasi");
 
+let angka = 0;
+const durasi = 1250;      // 1,25 detik
+const intervalMs = 50;
+const jumlahLangkah = durasi / intervalMs;
+const kenaikan = totalAsli / jumlahLangkah;
+
 const interval = setInterval(() => {
-    const random = Math.floor(Math.random() * (totalAsli + 1));
+    angka += kenaikan;
+
+    if (angka >= totalAsli) {
+        angka = totalAsli;
+        clearInterval(interval);
+    }
 
     totalEl.innerHTML =
-        "Rp " + random.toLocaleString('id-ID');
-}, 50);
-
-setTimeout(() => {
-    clearInterval(interval);
-
-    totalEl.innerHTML =
-        "Rp " + totalAsli.toLocaleString('id-ID');
-}, 1250);
+        "Rp " + Math.floor(angka).toLocaleString('id-ID');
+}, intervalMs);
 </script>
 			</body>
 			</html>
