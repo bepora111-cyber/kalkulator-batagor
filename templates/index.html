@@ -5,39 +5,190 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator Batagor Sahabat</title>
     <style>
-        #jam-digital {
-    text-align: center;
-    font-size: clamp(12px, 3vw, 16px);
-    font-weight: bold;
-    background-color: #b71c1c;
-    color: #ffffff;
-    padding: 8px 15px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  /* ==========================================
+   JAM DIGITAL - MODE NORMAL
+========================================== */
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
+#jam-digital{
 
-    white-space: nowrap;   /* tetap satu baris */
-    overflow: hidden;      /* tidak turun ke bawah */
+    position:relative;
+
+    width:100%;
+
+    height:42px;
+
+    margin:0 auto 20px;
+
+    cursor:pointer;
+
+    perspective:1000px;
+
+    font-size:clamp(12px, 3vw, 16px);
+
+    font-weight:bold;
+
+    letter-spacing:1px;
+
 }
-.ikon-waktu{
-    font-size: clamp(14px, 3vw, 20px);
-    flex-shrink: 0;
+
+
+/* ==========================================
+   DEPAN & BELAKANG
+========================================== */
+
+.jam-face{
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:8px 20px;
+
+    border-radius:20px;
+
+    color:#ffffff;
+
+    white-space:nowrap;
+
+    box-sizing:border-box;
+
+    backface-visibility:hidden;
+
+    -webkit-backface-visibility:hidden;
+
+    transition:
+
+        transform .7s cubic-bezier(.4,.2,.2,1);
+
+    box-shadow:
+
+        0 2px 8px rgba(0,0,0,.3);
+
 }
-@media (max-width:480px){
+
+
+/* ==========================================
+   SISI DEPAN
+========================================== */
+
+.jam-depan{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #b71c1c,
+
+            #8b0000
+
+        );
+
+}
+
+
+/* ==========================================
+   SISI BELAKANG
+========================================== */
+
+.jam-belakang{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #8b0000,
+
+            #5c0000
+
+        );
+
+    transform:rotateY(180deg);
+
+}
+
+
+/* ==========================================
+   FLIP
+========================================== */
+
+#jam-digital.flip .jam-depan{
+
+    transform:rotateY(-180deg);
+
+}
+
+
+#jam-digital.flip .jam-belakang{
+
+    transform:rotateY(0deg);
+
+}
+
+
+/* ==========================================
+   IKON
+========================================== */
+
+#ikon-waktu{
+
+    font-size:clamp(14px, 3vw, 20px);
+
+    flex-shrink:0;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:480px){
+
     #jam-digital{
-        font-size:11px;
-        padding:8px 10px;
-        letter-spacing:0;
-        gap:4px;
-    }
-}
 
+        height:40px;
+
+        font-size:11px;
+
+        letter-spacing:0;
+
+    }
+
+
+    .jam-face{
+
+        padding:8px 10px;
+
+        gap:4px;
+
+    }
+
+
+    #ikon-waktu{
+
+        font-size:17px;
+
+    }
+
+}
         /* BACKGROUND ASLI PILIHAN ANDA */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -257,41 +408,133 @@ body,
     transition: all 0.8s ease;
 }
 
-/* DARK MODE OTOMATIS */
-body.dark-mode {
+/* ==========================================
+   DARK MODE OTOMATIS
+========================================== */
+
+body.dark-mode{
+
     background-image:
-        linear-gradient(rgba(0,0,0,0.65),
-                        rgba(0,0,0,0.65)),
+
+        linear-gradient(
+            rgba(0,0,0,0.65),
+            rgba(0,0,0,0.65)
+        ),
+
         url('https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnLxbYy3Rp1O_S_Sopd2K03Uftxy_1W2l2Kma3ltHaMiTk5s_bLx7TiPJLp6MXejQPDsJa1tqXcM65iqjIEFmYaTjEayNOTAbpk5ruMuG8XqAz53JQogo74dPhxm305veeRzvn7tR3StxTu=s1360-w1360-h1020-rw');
+
 }
 
-body.dark-mode .container {
-    background: rgba(20,20,20,0.75);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 25px rgba(0,0,0,0.7);
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+body.dark-mode .container{
+
+    background:rgba(20,20,20,0.75);
+
+    backdrop-filter:blur(8px);
+
+    box-shadow:
+        0 4px 25px rgba(0,0,0,0.7);
+
 }
 
-body.dark-mode .menu-item {
-    background: rgba(255,255,255,0.08);
+
+/* ==========================================
+   MENU
+========================================== */
+
+body.dark-mode .menu-item{
+
+    background:
+        rgba(255,255,255,0.08);
+
 }
+
 
 body.dark-mode .menu-price,
 body.dark-mode .menu-name,
-body.dark-mode h2 {
-    color: #ffffff;
+body.dark-mode h2{
+
+    color:#ffffff;
+
 }
 
-body.dark-mode #jam-digital {
-    background: #111;
-    color: #fff;
+
+/* ==========================================
+   JAM DIGITAL - DARK MODE
+========================================== */
+
+body.dark-mode #jam-digital{
+
+    color:#ffffff;
+
 }
+
+
+/* ==========================================
+   DEPAN - DARK MODE
+========================================== */
+
+body.dark-mode .jam-depan{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #1a1a1a,
+
+            #000000
+
+        );
+
+    color:#ffffff;
+
+}
+
+
+/* ==========================================
+   BELAKANG - DARK MODE
+========================================== */
+
+body.dark-mode .jam-belakang{
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #111111,
+
+            #252525
+
+        );
+
+    color:#ffffff;
+
+}
+/* ==========================================
+   RESET PESANAN
+========================================== */
+
 #reset-pesanan{
+
     background:#555;
+
     margin-top:10px;
+
 }
+
 
 #reset-pesanan:hover{
+
     background:#333;
+
 }
     </style>
 </head>
@@ -299,7 +542,21 @@ body.dark-mode #jam-digital {
 
 <div class="container">
     <h2>KALKULATOR BATAGOR SAHABAT</h2>
-    <div id="jam-digital"></div>
+    <div id="jam-digital" onclick="this.classList.toggle('flip')">
+
+    <!-- DEPAN -->
+    <div class="jam-face jam-depan">
+        <span id="ucapan-waktu"></span>
+        <span id="ikon-waktu"></span>
+    </div>
+
+    <!-- BELAKANG -->
+    <div class="jam-face jam-belakang">
+        <span id="tanggal-waktu"></span>
+        <span id="jam-waktu"></span>
+    </div>
+
+</div>
     <div id="live-cuaca-wrapper">
 
     <div class="iklan-kiri">
@@ -394,43 +651,140 @@ body.dark-mode #jam-digital {
 </div>
 
 <script>
-    // 1. KODE JAM DIGITAL REAL-TIME DENGAN UCAPAN & GAMBAR DINAMIS
-    function updateJam() {
-        const daftarHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-        const sekarang = new Date();
-        
-        const hari = daftarHari[sekarang.getDay()];
-        const jamAngka = sekarang.getHours();
-        const jam = String(jamAngka).padStart(2, '0');
-        const menit = String(sekarang.getMinutes()).padStart(2, '0');
-        const detik = String(sekarang.getSeconds()).padStart(2, '0');
-        
-        // Menentukan ucapan dan ikon gambar (emoji) berdasarkan waktu
-        let ucapan = "Selamat Malam";
-        let ikon = "🌌"; // Default Malam Hari (Bulan & Bintang/Langit Malam)
-        
-        if (jamAngka >= 4 && jamAngka < 10) {
-            ucapan = "Selamat Pagi";
-            ikon = "🌅"; // Matahari Terbit
-        } else if (jamAngka >= 10 && jamAngka < 15) {
-            ucapan = "Selamat Siang";
-            ikon = "☀️"; // Matahari Full
-        } else if (jamAngka >= 15 && jamAngka < 18) {
-            ucapan = "Selamat Sore";
-            ikon = "🌇"; // Matahari Terbenam
-        } else if (jamAngka >= 18 || jamAngka < 4) {
-            ucapan = "Selamat Malam";
-            ikon = "✨🌙"; // Bulan dan Bintang
-        }
-        
-        // Susunan teks: Ucapan di kiri, waktu di tengah, gambar di sebelah kanan jam
-        const teksWaktu = `<span>${ucapan}, ${hari} | ${jam}:${menit}:${detik} WIB</span> <span class="ikon-waktu">${ikon}</span>`;
-        document.getElementById("jam-digital").innerHTML = teksWaktu;
-cekDarkMode();
-    }
-    updateJam(); 
-    setInterval(updateJam, 1000);
+  // ==========================================
+// JAM DIGITAL REAL-TIME + FLIP MANUAL
+// ==========================================
 
+function updateJam(){
+
+    const daftarHari = [
+        "Minggu",
+        "Senin",
+        "Selasa",
+        "Rabu",
+        "Kamis",
+        "Jumat",
+        "Sabtu"
+    ];
+
+
+    const sekarang = new Date();
+
+
+    // ==========================
+    // UCAPAN
+    // ==========================
+
+    const jamAngka =
+        sekarang.getHours();
+
+
+    let ucapan = "Selamat Malam";
+
+    let ikon = "✨🌙";
+
+
+    if(jamAngka >= 4 && jamAngka < 10){
+
+        ucapan = "Selamat Pagi";
+
+        ikon = "🌅";
+
+    }
+
+    else if(jamAngka >= 10 && jamAngka < 15){
+
+        ucapan = "Selamat Siang";
+
+        ikon = "☀️";
+
+    }
+
+    else if(jamAngka >= 15 && jamAngka < 18){
+
+        ucapan = "Selamat Sore";
+
+        ikon = "🌇";
+
+    }
+
+    else if(jamAngka >= 18 || jamAngka < 4){
+
+        ucapan = "Selamat Malam";
+
+        ikon = "✨🌙";
+
+    }
+
+
+    // ==========================
+    // HARI
+    // ==========================
+
+    const hari =
+        daftarHari[sekarang.getDay()];
+
+
+    // ==========================
+    // WAKTU
+    // ==========================
+
+    const jam =
+        String(sekarang.getHours()).padStart(2, "0");
+
+    const menit =
+        String(sekarang.getMinutes()).padStart(2, "0");
+
+    const detik =
+        String(sekarang.getSeconds()).padStart(2, "0");
+
+
+    // ==========================
+    // TANGGAL
+    // ==========================
+
+    const tanggal =
+        String(sekarang.getDate()).padStart(2, "0");
+
+    const bulan =
+        String(sekarang.getMonth() + 1).padStart(2, "0");
+
+    const tahun =
+        sekarang.getFullYear();
+
+
+    // ==========================
+    // DEPAN
+    // ==========================
+
+    document.getElementById("ucapan-waktu").textContent =
+        ucapan;
+
+
+    document.getElementById("ikon-waktu").textContent =
+        ikon;
+
+
+    // ==========================
+    // BELAKANG
+    // ==========================
+
+    document.getElementById("tanggal-waktu").textContent =
+        `${hari}, ${tanggal}/${bulan}/${tahun}`;
+
+
+    document.getElementById("jam-waktu").textContent =
+        `| ${jam}:${menit}:${detik} WIB`;
+
+
+    cekDarkMode();
+
+}
+
+
+updateJam();
+
+setInterval(updateJam, 1000);
     let dataCuaca = [];
 let indexCuaca = 0;
 
