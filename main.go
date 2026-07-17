@@ -77,7 +77,7 @@ func main() {
 				<style>
    body {
     font-family: 'Segoe UI', sans-serif;
-    background-image: url('images/Background.png');
+   background-image: url("/static/images/Background.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -109,7 +109,7 @@ func main() {
             rgba(0,0,0,0.7),
             rgba(0,0,0,0.7)
         ),
-        url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAFGcgEnEkqRLQEJw2JqwCC9mxfNSGLJWwkewXEjs3AqdHhFocIf_u5SUpEnAb2I0Wop8QaQmuHX5B_fglNXMRe6vMmUgxzrqEfA62aVvYloko9WIUfiUqF5h959tBarhrF7e_Q4ECoNxGyR=s1360-w1360-h1020-rw');
+        url('/static/images/Background.png');
 }
 
 body.dark-mode .struk {
@@ -226,7 +226,14 @@ const interval = setInterval(() => {
 			</html>
 		`, formatRincian(dataHasil), total)
 	})
-
+	// Menyajikan file gambar, CSS, dan file lain dari folder static
+	http.Handle(
+		"/static/",
+		http.StripPrefix(
+			"/static/",
+			http.FileServer(http.Dir("static")),
+		),
+	)
 	// --- PERUBAHAN UNTUK DEPLOY KE RENDER ---
 
 	// 1. Ambil port dari sistem Render secara otomatis
