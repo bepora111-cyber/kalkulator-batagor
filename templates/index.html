@@ -192,7 +192,7 @@
         /* BACKGROUND ASLI PILIHAN ANDA */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url("static/images/Background.png");
+            background-image: url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnLxbYy3Rp1O_S_Sopd2K03Uftxy_1W2l2Kma3ltHaMiTk5s_bLx7TiPJLp6MXejQPDsJa1tqXcM65iqjIEFmYaTjEayNOTAbpk5ruMuG8XqAz53JQogo74dPhxm305veeRzvn7tR3StxTu=w204-h170-n-k-no-nu");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -421,7 +421,7 @@ body.dark-mode{
             rgba(0,0,0,0.65)
         ),
 
-    url("static/images/Background.png");
+    url("https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnLxbYy3Rp1O_S_Sopd2K03Uftxy_1W2l2Kma3ltHaMiTk5s_bLx7TiPJLp6MXejQPDsJa1tqXcM65iqjIEFmYaTjEayNOTAbpk5ruMuG8XqAz53JQogo74dPhxm305veeRzvn7tR3StxTu=w204-h170-n-k-no-nu");
 }
 
 
@@ -535,6 +535,310 @@ body.dark-mode .jam-belakang{
     background:#333;
 
 }
+/* ==========================================
+   MODAL STRUK
+========================================== */
+
+#hasil-struk{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(5px);
+
+}
+
+
+/* KETIKA MODAL AKTIF */
+
+#hasil-struk.aktif{
+
+    display:flex;
+
+}
+
+
+/* BOX STRUK */
+
+.struk{
+
+    width:100%;
+
+    max-width:420px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.96);
+
+    color:#333;
+
+    box-shadow:
+
+        0 10px 40px rgba(0,0,0,.5);
+
+    animation:
+
+        munculStruk .3s ease;
+
+}
+
+
+/* ANIMASI */
+
+@keyframes munculStruk{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.8);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+/* JUDUL */
+
+.struk h3{
+
+    text-align:center;
+
+    color:#b71c1c;
+
+    margin-top:0;
+
+}
+
+
+/* GARIS */
+
+.garis{
+
+    border-top:2px dashed #333;
+
+    margin:15px 0;
+
+}
+
+
+/* ITEM */
+
+.item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+}
+
+
+/* TOTAL */
+
+.total{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-top:15px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:#1b5e20;
+
+}
+
+
+/* DARK MODE */
+
+body.dark-mode .struk{
+
+    background:rgba(25,25,25,.96);
+
+    color:white;
+
+}
+
+
+body.dark-mode .struk h3{
+
+    color:#ff6b6b;
+
+}
+
+
+body.dark-mode .garis{
+
+    border-color:#aaa;
+
+}
+
+
+body.dark-mode .total{
+
+    color:#fff;
+
+}
+
+
+/* HP */
+
+@media(max-width:480px){
+
+    #hasil-struk{
+
+        padding:15px;
+
+    }
+
+    .struk{
+
+        padding:20px;
+
+    }
+
+}
+#hasil-struk{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    box-sizing:border-box;
+
+    background:rgba(0,0,0,.7);
+
+    backdrop-filter:blur(5px);
+
+}
+
+
+#hasil-struk.aktif{
+
+    display:flex;
+
+}
+.tutup-struk{
+
+    position:absolute;
+
+    top:12px;
+
+    right:12px;
+
+    width:32px;
+
+    height:32px;
+
+    min-height:0;
+
+    padding:0;
+
+    margin:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent;
+
+    color:#090000!important;
+
+    border:none;
+
+    box-shadow:none;
+
+    font-size:24px;
+
+    line-height:1;
+
+    cursor:pointer;
+
+    animation:none;
+
+}
+
+.tutup-struk:hover{
+
+    transform:scale(1.15);
+
+    background:transparent;
+
+    color:#b71c1c;
+
+    box-shadow:none;
+
+} 
+/* ==========================================
+   TOMBOL X - DARK MODE
+========================================== */
+
+body.dark-mode .tutup-struk{
+
+    color:#fff !important;
+
+}
+
+body.dark-mode .tutup-struk:hover{
+
+    color:#ff6b6b;
+
+}
+.struk{
+
+    position:relative;
+
+}
     </style>
 </head>
 <body>
@@ -589,65 +893,178 @@ body.dark-mode .jam-belakang{
     </div>
 
 </div>
-    <form action="/hitung" method="POST">
-        
-        <div class="menu-item">
-            <img src="static/images/Batagor Premium.jpg" alt="Batagor Premium">
-            <div class="menu-details">
-                <p class="menu-name">BATAGOR PREMIUM</p>
-                <p class="menu-price">Rp 10.000</p>
-            </div>
-            <input type="number" name="menu1" class="menu-input" min="0" value="0">
+    <form id="form-belanja">
+
+    <div class="menu-item">
+
+        <img
+            src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmz58J9vESHBjLlRGoR1z-qeAYfVAALq8CRSDLVlh_nUma7gsjpEDIqZEW6_8vbPPTznLtJ8qABWCGKUzQwpiRhe4rwj9BWydT6732cNGsqeZgM10AIvXOnbpUP1DS54kk9KxCrB3-Drkou=s1360-w1360-h1020-rw"
+            alt="Batagor Premium"
+        >
+
+        <div class="menu-details">
+
+            <p class="menu-name">
+                BATAGOR PREMIUM
+            </p>
+
+            <p class="menu-price">
+                Rp 10.000
+            </p>
+
         </div>
 
-        <div class="menu-item"> 
-            <img src="static/images/Siomay Premium.jpg" alt="Siomay Premium">
-            <div class="menu-details">
-                <p class="menu-name">SIOMAY PREMIUM</p>
-                <p class="menu-price">Rp 10.000</p>
-            </div>
-            <input type="number" name="menu2" class="menu-input" min="0" value="0">
+        <input
+            type="number"
+            name="menu1"
+            class="menu-input"
+            min="0"
+            value="0"
+        >
+
+    </div>
+
+
+    <div class="menu-item">
+
+        <img
+            src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkmvfEYIzz_ITYkReE-DWDr6GcX_W4QL3XQ2rB8cd5og_k3r7Zj460GrsYb8_d-8iM7Ww7c4angL4D_2rkGGiE78i2YadbckyduK9opNW9uegSSRQNGas9NKGwGvOf5oW1hilgGr5yb-nU=s1360-w1360-h1020-rw"
+            alt="Siomay Premium"
+        >
+
+        <div class="menu-details">
+
+            <p class="menu-name">
+                SIOMAY PREMIUM
+            </p>
+
+            <p class="menu-price">
+                Rp 10.000
+            </p>
+
         </div>
 
-        <div class="menu-item">
-            <img src="static/images/Baso Goreng.jpg" alt="Baso Goreng">
-            <div class="menu-details">
-                <p class="menu-name">BASO GORENG</p>
-                <p class="menu-price">Rp 6.000</p>
-            </div>
-            <input type="number" name="menu3" class="menu-input" min="0" value="0">
+        <input
+            type="number"
+            name="menu2"
+            class="menu-input"
+            min="0"
+            value="0"
+        >
+
+    </div>
+
+
+    <div class="menu-item">
+
+        <img
+            src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmbPesDZY8KvfZsOO3JEAyXEBjw6kJKn2pMZ9rpj_D-AfrNSbd_5gA5pv3jAx32xJfCbEdMU1K0pfEufV2dAzWKqo66VXM54lgnhpI2sOMHnEVDV9Ffoju8-EBpreaDyRSPqD95m5AQGNWa=s1360-w1360-h1020-rw"
+            alt="Baso Goreng"
+        >
+
+        <div class="menu-details">
+
+            <p class="menu-name">
+                BASO GORENG
+            </p>
+
+            <p class="menu-price">
+                Rp 6.000
+            </p>
+
         </div>
 
-        <div class="menu-item">
-            <img src="static/images/Batagor Medium.png" alt="Batagor Medium">
-            <div class="menu-details">
-                <p class="menu-name">BATAGOR MEDIUM</p>
-                <p class="menu-price">Rp 6.000</p>
-            </div>
-            <input type="number" name="menu4" class="menu-input" min="0" value="0">
+        <input
+            type="number"
+            name="menu3"
+            class="menu-input"
+            min="0"
+            value="0"
+        >
+
+    </div>
+
+
+    <div class="menu-item">
+
+        <img
+            src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlSB9-_-LocMgcdQyad2F-tONl9gq47KjUL9NCID7G_HFUEFHH52AGHMF66QaZcl4rdN3hw0swgsphk03ByJ2DqwJGsVCFSgpgeamiqEVF_Zp72QcrUOWOFuBzVfaoGiEj-vQHivcfSwP6o=s1360-w1360-h1020-rw"
+            alt="Batagor Medium"
+        >
+
+        <div class="menu-details">
+
+            <p class="menu-name">
+                BATAGOR MEDIUM
+            </p>
+
+            <p class="menu-price">
+                Rp 6.000
+            </p>
+
         </div>
 
-        <div class="menu-item">
-            <img src="static/images/Siomay Medium.png" alt="Siomay Medium">
-            <div class="menu-details">
-                <p class="menu-name">SIOMAY MEDIUM</p>
-                <p class="menu-price">Rp 6.000</p>
-            </div>
-            <input type="number" name="menu5" class="menu-input" min="0" value="0">
+        <input
+            type="number"
+            name="menu4"
+            class="menu-input"
+            min="0"
+            value="0"
+        >
+
+    </div>
+
+
+    <div class="menu-item">
+
+        <img
+            src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmHMpZ7YBazEL824QX3w2Vg9CSHcGQae2PQijg57eZ7vVLEjwjUIowOB52XtRk7jXazMJO97QM-CejhaftYt3v9b4obuUA2JfoxO321sUU7nEUb4wahwTPh4v09lo_YNKmTWqRMbj5HSN2N=s1360-w1360-h1020-rw"
+            alt="Siomay Medium"
+        >
+
+        <div class="menu-details">
+
+            <p class="menu-name">
+                SIOMAY MEDIUM
+            </p>
+
+            <p class="menu-price">
+                Rp 6.000
+            </p>
+
         </div>
+
+        <input
+            type="number"
+            name="menu5"
+            class="menu-input"
+            min="0"
+            value="0"
+        >
+
+    </div>
+
 <div class="checkout-section">
-    <button type="submit">
-    Hitung Total Belanja
-</button>
 
-    <button type="button" id="reset-pesanan">
+    <button
+        type="button"
+        id="hitung-total">
+        Hitung Total Belanja
+    </button>
+
+    <button
+        type="button"
+        id="reset-pesanan">
         Reset Pesanan
     </button>
 
 </div>
-           
-    </form>
-</div>
+</form>
+
+
+<!-- HASIL PERHITUNGAN AKAN MUNCUL DI SINI -->
+
+<div id="hasil-struk"></div>
 
 <script>
   // ==========================================
@@ -984,6 +1401,288 @@ document.getElementById('reset-pesanan').addEventListener('click', () => {
         input.dispatchEvent(new Event('input'));
     });
 });
+// ==========================================
+// HITUNG TOTAL BELANJA
+// ==========================================
+
+const tombolHitung =
+    document.getElementById("hitung-total");
+
+
+tombolHitung.addEventListener("click", function(){
+
+    const input1 =
+        document.querySelector('[name="menu1"]');
+
+    const input2 =
+        document.querySelector('[name="menu2"]');
+
+    const input3 =
+        document.querySelector('[name="menu3"]');
+
+    const input4 =
+        document.querySelector('[name="menu4"]');
+
+    const input5 =
+        document.querySelector('[name="menu5"]');
+
+
+    const qty1 =
+        Number(input1.value) || 0;
+
+    const qty2 =
+        Number(input2.value) || 0;
+
+    const qty3 =
+        Number(input3.value) || 0;
+
+    const qty4 =
+        Number(input4.value) || 0;
+
+    const qty5 =
+        Number(input5.value) || 0;
+
+
+    // HARGA
+    const total =
+
+        (qty1 * 10000) +
+
+        (qty2 * 10000) +
+
+        (qty3 * 6000) +
+
+        (qty4 * 6000) +
+
+        (qty5 * 6000);
+
+
+    let rincian = "";
+
+
+    if(qty1 > 0){
+
+        rincian += `
+            <div class="item">
+                <span>Batagor Premium x${qty1}</span>
+                <span>
+                    Rp ${(qty1 * 10000)
+                        .toLocaleString("id-ID")}
+                </span>
+            </div>
+        `;
+
+    }
+
+
+    if(qty2 > 0){
+
+        rincian += `
+            <div class="item">
+                <span>Siomay Premium x${qty2}</span>
+                <span>
+                    Rp ${(qty2 * 10000)
+                        .toLocaleString("id-ID")}
+                </span>
+            </div>
+        `;
+
+    }
+
+
+    if(qty3 > 0){
+
+        rincian += `
+            <div class="item">
+                <span>Baso Goreng x${qty3}</span>
+                <span>
+                    Rp ${(qty3 * 6000)
+                        .toLocaleString("id-ID")}
+                </span>
+            </div>
+        `;
+
+    }
+
+
+    if(qty4 > 0){
+
+        rincian += `
+            <div class="item">
+                <span>Batagor Medium x${qty4}</span>
+                <span>
+                    Rp ${(qty4 * 6000)
+                        .toLocaleString("id-ID")}
+                </span>
+            </div>
+        `;
+
+    }
+
+
+    if(qty5 > 0){
+
+        rincian += `
+            <div class="item">
+                <span>Siomay Medium x${qty5}</span>
+                <span>
+                    Rp ${(qty5 * 6000)
+                        .toLocaleString("id-ID")}
+                </span>
+            </div>
+        `;
+
+    }
+
+
+    if(rincian === ""){
+
+        rincian = `
+            <div style="text-align:center; color:#999;">
+                Tidak ada item yang dibeli
+            </div>
+        `;
+
+    }
+
+
+        document.getElementById("hasil-struk").innerHTML = `
+
+    <div class="struk">
+
+        <button
+            type="button"
+            class="tutup-struk"
+            id="tutup-struk">
+            ✕
+        </button>
+
+
+        <h3>
+            STRUK BATAGOR SAHABAT
+        </h3>
+
+
+        <div class="garis"></div>
+
+
+        ${rincian}
+
+
+        <div class="garis"></div>
+
+
+        <div class="total">
+
+            <span>
+                TOTAL :
+            </span>
+
+            <span>
+                Rp ${total.toLocaleString("id-ID")}
+            </span>
+
+        </div>
+
+    </div>
+
+`;
+    // ==========================================
+// TAMPILKAN MODAL STRUK
+// ==========================================
+
+document
+    .getElementById("hasil-struk")
+    .classList.add("aktif");
+
+
+
+
+    // ==========================================
+// TAMPILKAN MODAL STRUK
+// ==========================================
+
+document
+    .getElementById("hasil-struk")
+    .classList.add("aktif");
+
+
+// ==========================================
+// ANIMASI TOTAL
+// ==========================================
+
+const totalEl =
+    document.querySelector("#hasil-struk .total span:last-child");
+
+let angka = 0;
+
+const durasi = 1000;
+
+const intervalMs = 50;
+
+const jumlahLangkah =
+    durasi / intervalMs;
+
+const kenaikan =
+    total / jumlahLangkah;
+
+const interval =
+    setInterval(() => {
+
+        angka += kenaikan;
+
+        if(angka >= total){
+
+            angka = total;
+
+            clearInterval(interval);
+
+        }
+
+        totalEl.textContent =
+            "Rp " +
+            Math.floor(angka)
+                .toLocaleString("id-ID");
+
+    }, intervalMs);
+
+});
+
+// ==========================================
+// KLIK AREA LUAR MODAL UNTUK MENUTUP
+// ==========================================
+
+const hasilStruk =
+    document.getElementById("hasil-struk");
+
+
+hasilStruk.addEventListener("click", function(event){
+
+    // Hanya jika yang diklik adalah background modal
+    if(event.target === event.currentTarget){
+
+        hasilStruk.classList.remove("aktif");
+
+    }
+
+});
+document
+    .getElementById("hasil-struk")
+    .addEventListener("click", function(event){
+
+        if(
+            event.target.id === "tutup-struk"
+            ||
+            event.target === this
+        ){
+
+            this.classList.remove("aktif");
+
+        }
+
+    });
+
+
 </script>       
 </body>
 </html> 
